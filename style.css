@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
+
+body {
+    background-color: #0d0d12; 
+    color: #4db8ff;          
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    padding-top: 50px;
+    margin: 0;
+}
+
+h1, h2 {
+    font-weight: normal;
+}
+
+.titel {
+    font-size: 60px; 
+    line-height: 0.85;
+    letter-spacing: 5px;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    font-weight: 900;
+    text-transform: none;
+}
+
+.terug-knop {
+    display: block;
+    text-align: left;
+    padding: 20px;
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.terug-knop:hover {
+    color: #4db8ff;
+}
+
+.score-houder {
+    width: 85%;
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid #2d2d44; 
+    border-radius: 12px;
+    background-color: rgba(20, 20, 35, 0.6); 
+    overflow: hidden;
+}
+
+.score-kop {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-bottom: 1px solid #2d2d44;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.score-inhoud {
+    padding: 80px 0;
+    color: #444; 
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.spel-foto {
+    border: 3px solid #2d2d44;
+    border-radius: 12px;
+    max-width: 450px;
+}
+
+.knop {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 18px 45px;
+    border: 1px solid #4db8ff;
+    border-radius: 6px;
+    color: #4db8ff;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: none;
+}
