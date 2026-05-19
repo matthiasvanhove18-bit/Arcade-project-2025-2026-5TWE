@@ -3,9 +3,7 @@ from flask import Flask, render_template, request, jsonify
 app = Flask(__name__)
 
 # De lijst met scores (start met een test-score)
-highscores = [
-    {"rang": 1, "naam": "Systeem", "score": 10}
-]
+highscores = []
 
 @app.route('/')
 def index():
