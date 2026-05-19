@@ -29,8 +29,8 @@ def update_score():
         }
         highscores.append(nieuwe_entry)
         
-        # Sorteren: hoogste score bovenaan
-        highscores.sort(key=lambda x: x['score'], reverse=True)
+        # Sorteren: laagste score bovenaan
+        highscores.sort(key=lambda x: x['score'], reverse=False)
         
         # Rangnummers herstellen (1, 2, 3...)
         for i, entry in enumerate(highscores):
