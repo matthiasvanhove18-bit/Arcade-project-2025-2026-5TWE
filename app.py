@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
-# De lijst met scores (start met een test-score)
 highscores = []
 
 @app.route('/')
@@ -10,8 +9,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/highscores')
-def highscores_page():
-    # We sturen de lijst 'highscores' door naar de HTML
+def highscores_page(): 
     return render_template('minesweeper.html', scores=highscores)
 
 @app.route('/update_score', methods=['POST'])
@@ -20,19 +18,16 @@ def update_score():
         data = request.get_json()
         if not data or 'naam' not in data or 'score' not in data:
             return jsonify({"error": "Geen goede data ontvangen"}), 400
-
-        # Nieuwe score toevoegen
+       
         nieuwe_entry = {
             "rang": 0, 
             "naam": str(data['naam']),
             "score": int(data['score'])
         }
         highscores.append(nieuwe_entry)
-        
-        # Sorteren: laagste score bovenaan
+              
         highscores.sort(key=lambda x: x['score'], reverse=False)
-        
-        # Rangnummers herstellen (1, 2, 3...)
+                
         for i, entry in enumerate(highscores):
             entry['rang'] = i + 1
             
