@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>High Scores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script>
+        let currentFilter = "all";
+
+        function filterScores() {
+            currentFilter = document.getElementById("levelFilter").value;
+            loadScores();
+        }
+
+        async function loadScores() {
+            const res = await fetch('/get_scores');
+            const data = await res.json();
+
+            const table = document.getElementById("scoreTable");
+            let html = "";
+
+            function addRows(list, level) {
+                list.forEach(s => {
+                    html += `
+                        <tr class="score-row" data-level="${level}">
+                            <td style="padding: 15px;">${s.rang}</td>
+                            <td style="padding: 15px;">${s.naam}</td>
+                            <td style="padding: 15px;">${s.score}</td>
+                        </tr>
+                    `;
+                });
+            }
+
+            if (currentFilter === "all") {
+                addRows(data.all, "all");
+            }
+            else if (currentFilter === "1") {
+                addRows(data.easy, "1");
+            }
+            else if (currentFilter === "2") {
+                addRows(data.normal, "2");
+            }
+            else if (currentFilter === "3") {
+                addRows(data.hard, "3");
+            }
+
+            table.innerHTML = html;
+        }
+
+        setInterval(loadScores, 2000);
+        window.onload = loadScores;
+    </script>
+</head>
+
+<body>
+
+    <a href="/" class="terug-knop">⬅ Terug naar Home</a>
+
+    <h1 class="titel">HIGH SCORES</h1>
+
+    <div class="highscore-omhulsel">
+
+        <div class="filter-box">
+            <label for="levelFilter">LEVEL</label>
+            <select id="levelFilter" onchange="filterScores()">
+                <option value="all" selected>All</option>
+                <option value="1">Easy</option>
+                <option value="2">Normal</option>
+                <option value="3">Hard</option>
+            </select>
+        </div>
+
+        <div class="score-houder">
+
+            <div class="score-kop">
+                <span>RANG</span>
+                <span>NAAM</span>
+                <span>SCORE</span>
+            </div>
+
+            <table id="scoreTable" style="width:100%; color: #4db8ff; border-collapse: collapse;"></table>
+
+        </div>
+    </div>
+
+</body>
+</html>
